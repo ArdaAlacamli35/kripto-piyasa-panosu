@@ -1,0 +1,769 @@
+{
+	"@programName": "ZAP",
+	"@version": "2.17.0",
+	"@generated": "Thu, 29 Oct 2026 10:06:27",
+	"created": "2026-10-29T10:06:27.999036345Z",
+	"insights":[
+		{
+			"level": "Low",
+			"reason": "Warning",
+			"site": "",
+			"key": "insight.log.warn",
+			"description": "ZAP warnings logged - see the zap.log file for details",
+			"statistic": "1"
+		},
+		{
+			"level": "Info",
+			"reason": "Informational",
+			"site": "https://kripto-piyasa-panosu.pages.dev",
+			"key": "insight.code.2xx",
+			"description": "Percentage of responses with status code 2xx",
+			"statistic": "100"
+		},
+		{
+			"level": "Info",
+			"reason": "Informational",
+			"site": "https://kripto-piyasa-panosu.pages.dev",
+			"key": "insight.endpoint.ctype.application/javascript",
+			"description": "Percentage of endpoints with content type application/javascript",
+			"statistic": "12"
+		},
+		{
+			"level": "Info",
+			"reason": "Informational",
+			"site": "https://kripto-piyasa-panosu.pages.dev",
+			"key": "insight.endpoint.ctype.application/manifest+json",
+			"description": "Percentage of endpoints with content type application/manifest+json",
+			"statistic": "12"
+		},
+		{
+			"level": "Info",
+			"reason": "Informational",
+			"site": "https://kripto-piyasa-panosu.pages.dev",
+			"key": "insight.endpoint.ctype.image/svg+xml",
+			"description": "Percentage of endpoints with content type image/svg+xml",
+			"statistic": "12"
+		},
+		{
+			"level": "Info",
+			"reason": "Informational",
+			"site": "https://kripto-piyasa-panosu.pages.dev",
+			"key": "insight.endpoint.ctype.text/css",
+			"description": "Percentage of endpoints with content type text/css",
+			"statistic": "12"
+		},
+		{
+			"level": "Info",
+			"reason": "Informational",
+			"site": "https://kripto-piyasa-panosu.pages.dev",
+			"key": "insight.endpoint.ctype.text/html",
+			"description": "Percentage of endpoints with content type text/html",
+			"statistic": "25"
+		},
+		{
+			"level": "Info",
+			"reason": "Informational",
+			"site": "https://kripto-piyasa-panosu.pages.dev",
+			"key": "insight.endpoint.ctype.text/plain",
+			"description": "Percentage of endpoints with content type text/plain",
+			"statistic": "25"
+		},
+		{
+			"level": "Info",
+			"reason": "Informational",
+			"site": "https://kripto-piyasa-panosu.pages.dev",
+			"key": "insight.endpoint.method.GET",
+			"description": "Percentage of endpoints with method GET",
+			"statistic": "100"
+		},
+		{
+			"level": "Info",
+			"reason": "Informational",
+			"site": "https://kripto-piyasa-panosu.pages.dev",
+			"key": "insight.endpoint.total",
+			"description": "Count of total endpoints",
+			"statistic": "8"
+		},
+		{
+			"level": "Info",
+			"reason": "Informational",
+			"site": "https://kripto-piyasa-panosu.pages.dev",
+			"key": "insight.response.slow",
+			"description": "Percentage of slow responses",
+			"statistic": "30"
+		}
+	],
+	"site":[ 
+		{
+			"@name": "https://kripto-piyasa-panosu.pages.dev",
+			"@host": "kripto-piyasa-panosu.pages.dev",
+			"@port": "443",
+			"@ssl": "true",
+			"alerts": [ 
+				{
+					"pluginid": "10098",
+					"alertRef": "10098",
+					"alert": "Cross-Domain Misconfiguration",
+					"name": "Cross-Domain Misconfiguration",
+					"riskcode": "2",
+					"confidence": "2",
+					"riskdesc": "Medium (Medium)",
+					"desc": "<p>Web browser data loading may be possible, due to a Cross Origin Resource Sharing (CORS) misconfiguration on the web server.</p>",
+					"instances":[ 
+						{
+							"id": "6",
+							"uri": "https://kripto-piyasa-panosu.pages.dev",
+							"nodeName": "https:\/\/kripto-piyasa-panosu.pages.dev",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "Access-Control-Allow-Origin: *",
+							"otherinfo": "The CORS misconfiguration on the web server permits cross-domain read requests from arbitrary third party domains, using unauthenticated APIs on this domain. Web browser implementations do not permit arbitrary third parties to read the response from authenticated APIs, however. This reduces the risk somewhat. This misconfiguration could be used by an attacker to access data that is available in an unauthenticated manner, but which uses some other form of security, such as IP address white-listing."
+						},
+						{
+							"id": "38",
+							"uri": "https://kripto-piyasa-panosu.pages.dev/assets/index-Dm2fdJpP.css",
+							"nodeName": "https:\/\/kripto-piyasa-panosu.pages.dev\/assets\/index-Dm2fdJpP.css",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "Access-Control-Allow-Origin: *",
+							"otherinfo": "The CORS misconfiguration on the web server permits cross-domain read requests from arbitrary third party domains, using unauthenticated APIs on this domain. Web browser implementations do not permit arbitrary third parties to read the response from authenticated APIs, however. This reduces the risk somewhat. This misconfiguration could be used by an attacker to access data that is available in an unauthenticated manner, but which uses some other form of security, such as IP address white-listing."
+						},
+						{
+							"id": "37",
+							"uri": "https://kripto-piyasa-panosu.pages.dev/favicon.svg",
+							"nodeName": "https:\/\/kripto-piyasa-panosu.pages.dev\/favicon.svg",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "Access-Control-Allow-Origin: *",
+							"otherinfo": "The CORS misconfiguration on the web server permits cross-domain read requests from arbitrary third party domains, using unauthenticated APIs on this domain. Web browser implementations do not permit arbitrary third parties to read the response from authenticated APIs, however. This reduces the risk somewhat. This misconfiguration could be used by an attacker to access data that is available in an unauthenticated manner, but which uses some other form of security, such as IP address white-listing."
+						},
+						{
+							"id": "4",
+							"uri": "https://kripto-piyasa-panosu.pages.dev/robots.txt",
+							"nodeName": "https:\/\/kripto-piyasa-panosu.pages.dev\/robots.txt",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "Access-Control-Allow-Origin: *",
+							"otherinfo": "The CORS misconfiguration on the web server permits cross-domain read requests from arbitrary third party domains, using unauthenticated APIs on this domain. Web browser implementations do not permit arbitrary third parties to read the response from authenticated APIs, however. This reduces the risk somewhat. This misconfiguration could be used by an attacker to access data that is available in an unauthenticated manner, but which uses some other form of security, such as IP address white-listing."
+						},
+						{
+							"id": "10",
+							"uri": "https://kripto-piyasa-panosu.pages.dev/sitemap.xml",
+							"nodeName": "https:\/\/kripto-piyasa-panosu.pages.dev\/sitemap.xml",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "Access-Control-Allow-Origin: *",
+							"otherinfo": "The CORS misconfiguration on the web server permits cross-domain read requests from arbitrary third party domains, using unauthenticated APIs on this domain. Web browser implementations do not permit arbitrary third parties to read the response from authenticated APIs, however. This reduces the risk somewhat. This misconfiguration could be used by an attacker to access data that is available in an unauthenticated manner, but which uses some other form of security, such as IP address white-listing."
+						}
+					],
+					"count": "5",
+					"systemic": true,
+					"solution": "<p>Ensure that sensitive data is not available in an unauthenticated manner (using IP address white-listing, for instance).</p><p>Configure the \"Access-Control-Allow-Origin\" HTTP header to a more restrictive set of domains, or remove all CORS headers entirely, to allow the web browser to enforce the Same Origin Policy (SOP) in a more restrictive manner.</p>",
+					"otherinfo": "<p>The CORS misconfiguration on the web server permits cross-domain read requests from arbitrary third party domains, using unauthenticated APIs on this domain. Web browser implementations do not permit arbitrary third parties to read the response from authenticated APIs, however. This reduces the risk somewhat. This misconfiguration could be used by an attacker to access data that is available in an unauthenticated manner, but which uses some other form of security, such as IP address white-listing.</p>",
+					"reference": "<p>https://vulncat.fortify.com/en/detail?category=HTML5&subcategory=Overly%20Permissive%20CORS%20Policy</p>",
+					"cweid": "264",
+					"wascid": "14",
+					"sourceid": "6"
+				},
+				{
+					"pluginid": "10055",
+					"alertRef": "10055-3",
+					"alert": "CSP: Notices",
+					"name": "CSP: Notices",
+					"riskcode": "1",
+					"confidence": "3",
+					"riskdesc": "Low (High)",
+					"desc": "<p>Content Security Policy (CSP) is an added layer of security that helps to detect and mitigate certain types of attacks. Including (but not limited to) Cross Site Scripting (XSS), and data injection attacks. These attacks are used for everything from data theft to site defacement or distribution of malware. CSP provides a set of standard HTTP headers that allow website owners to declare approved sources of content that browsers should be allowed to load on that page \u2014 covered types are JavaScript, CSS, HTML frames, fonts, images and embeddable objects such as Java applets, ActiveX, audio and video files.</p>",
+					"instances":[ 
+						{
+							"id": "1",
+							"uri": "https://kripto-piyasa-panosu.pages.dev",
+							"nodeName": "https:\/\/kripto-piyasa-panosu.pages.dev",
+							"method": "GET",
+							"param": "Content-Security-Policy",
+							"attack": "",
+							"evidence": "default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://data-api.binance.vision wss://data-stream.binance.vision; manifest-src 'self'; worker-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; upgrade-insecure-requests; require-trusted-types-for 'script'; trusted-types sw; report-uri /csp-report",
+							"otherinfo": "Warnings:\nThe report-uri directive has been deprecated in favor of the new report-to directive\n"
+						},
+						{
+							"id": "43",
+							"uri": "https://kripto-piyasa-panosu.pages.dev/",
+							"nodeName": "https:\/\/kripto-piyasa-panosu.pages.dev\/",
+							"method": "GET",
+							"param": "Content-Security-Policy",
+							"attack": "",
+							"evidence": "default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://data-api.binance.vision wss://data-stream.binance.vision; manifest-src 'self'; worker-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; upgrade-insecure-requests; require-trusted-types-for 'script'; trusted-types sw; report-uri /csp-report",
+							"otherinfo": "Warnings:\nThe report-uri directive has been deprecated in favor of the new report-to directive\n"
+						},
+						{
+							"id": "9",
+							"uri": "https://kripto-piyasa-panosu.pages.dev/sitemap.xml",
+							"nodeName": "https:\/\/kripto-piyasa-panosu.pages.dev\/sitemap.xml",
+							"method": "GET",
+							"param": "Content-Security-Policy",
+							"attack": "",
+							"evidence": "default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://data-api.binance.vision wss://data-stream.binance.vision; manifest-src 'self'; worker-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; upgrade-insecure-requests; require-trusted-types-for 'script'; trusted-types sw; report-uri /csp-report",
+							"otherinfo": "Warnings:\nThe report-uri directive has been deprecated in favor of the new report-to directive\n"
+						}
+					],
+					"count": "3",
+					"systemic": false,
+					"solution": "<p>Ensure that your web server, application server, load balancer, etc. is properly configured to set the Content-Security-Policy header.</p>",
+					"otherinfo": "<p>Warnings:</p><p>The report-uri directive has been deprecated in favor of the new report-to directive</p><p></p>",
+					"reference": "<p>https://www.w3.org/TR/CSP/</p><p>https://caniuse.com/#search=content+security+policy</p><p>https://content-security-policy.com/</p><p>https://github.com/HtmlUnit/htmlunit-csp</p><p>https://web.dev/articles/csp#resource-options</p>",
+					"cweid": "693",
+					"wascid": "15",
+					"sourceid": "6"
+				},
+				{
+					"pluginid": "90004",
+					"alertRef": "90004-2",
+					"alert": "Cross-Origin-Embedder-Policy Header Missing or Invalid",
+					"name": "Cross-Origin-Embedder-Policy Header Missing or Invalid",
+					"riskcode": "1",
+					"confidence": "2",
+					"riskdesc": "Low (Medium)",
+					"desc": "<p>Cross-Origin-Embedder-Policy header is a response header that prevents a document from loading any cross-origin resources that don't explicitly grant the document permission (using CORP or CORS).</p>",
+					"instances":[ 
+						{
+							"id": "18",
+							"uri": "https://kripto-piyasa-panosu.pages.dev",
+							"nodeName": "https:\/\/kripto-piyasa-panosu.pages.dev",
+							"method": "GET",
+							"param": "Cross-Origin-Embedder-Policy",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": ""
+						},
+						{
+							"id": "51",
+							"uri": "https://kripto-piyasa-panosu.pages.dev/",
+							"nodeName": "https:\/\/kripto-piyasa-panosu.pages.dev\/",
+							"method": "GET",
+							"param": "Cross-Origin-Embedder-Policy",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": ""
+						},
+						{
+							"id": "21",
+							"uri": "https://kripto-piyasa-panosu.pages.dev/sitemap.xml",
+							"nodeName": "https:\/\/kripto-piyasa-panosu.pages.dev\/sitemap.xml",
+							"method": "GET",
+							"param": "Cross-Origin-Embedder-Policy",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": ""
+						}
+					],
+					"count": "3",
+					"systemic": false,
+					"solution": "<p>Ensure that the application/web server sets the Cross-Origin-Embedder-Policy header appropriately, and that it sets the Cross-Origin-Embedder-Policy header to 'require-corp' for documents.</p><p>If possible, ensure that the end user uses a standards-compliant and modern web browser that supports the Cross-Origin-Embedder-Policy header (https://caniuse.com/mdn-http_headers_cross-origin-embedder-policy).</p>",
+					"otherinfo": "",
+					"reference": "<p>https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Cross-Origin-Embedder-Policy</p>",
+					"cweid": "693",
+					"wascid": "14",
+					"sourceid": "1"
+				},
+				{
+					"pluginid": "10094",
+					"alertRef": "10094-3",
+					"alert": "Base64 Disclosure",
+					"name": "Base64 Disclosure",
+					"riskcode": "0",
+					"confidence": "2",
+					"riskdesc": "Informational (Medium)",
+					"desc": "<p>Base64 encoded data was disclosed by the application/web server. Note: in the interests of performance not all base64 strings in the response were analyzed individually, the entire response should be looked at by the analyst/security team/developer(s).</p>",
+					"instances":[ 
+						{
+							"id": "29",
+							"uri": "https://kripto-piyasa-panosu.pages.dev",
+							"nodeName": "https:\/\/kripto-piyasa-panosu.pages.dev",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "2Fabf0knkluacSMsGAiNXAy3ozfZJbrE8jf684vvvMXKbTCwWPY0m4",
+							"otherinfo": "\uFFFDV\uFFFDI'\uFFFD[\uFFFDq#,\\x0018\\x0008\uFFFD\\\\x000c\uFFFD\uFFFD7\uFFFD%\uFFFD\uFFFD\uFFFD7\uFFFD\uFFFD\uFFFD\uFFFD\uFFFDm0\uFFFDX\uFFFD4\uFFFD"
+						},
+						{
+							"id": "22",
+							"uri": "https://kripto-piyasa-panosu.pages.dev",
+							"nodeName": "https:\/\/kripto-piyasa-panosu.pages.dev",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "2FzQV0W0rI5mJla5J9b1b0u9pJcmqulX3ENKBw8rXDiCAguMlh60PppPKsvxC82x0PnNzyBQqToDJlDXiOVr3v9LrxNHLoG7",
+							"otherinfo": "\uFFFD\\\uFFFDWE\uFFFD\uFFFD\uFFFDf&V\uFFFD'\uFFFD\uFFFDoK\uFFFD\uFFFD\uFFFD&\uFFFD\uFFFDW\uFFFDCJ\\x0007\\x000f+\\8\uFFFD\\x0002\\x000b\uFFFD\uFFFD\\x001e\uFFFD>\uFFFDO*\uFFFD\uFFFD\\x000b\u0371\uFFFD\uFFFD\uFFFD\uFFFD P\uFFFD:\\x0003&P\u05C8\uFFFDk\uFFFD\uFFFDK\uFFFD\\x0013G.\uFFFD\uFFFD"
+						},
+						{
+							"id": "53",
+							"uri": "https://kripto-piyasa-panosu.pages.dev/",
+							"nodeName": "https:\/\/kripto-piyasa-panosu.pages.dev\/",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "2FAlv9mn4FLeabonpcR7eDCK8VqdV2nHAeYqaeZOgEGrbbkZcZqTYYHLMasYuZLuc81tSVRFa1CpXhLN6ATmzPP5RxAPtQVr2SacSuwV4Y3JYMEBmEioDcwRRtV7GQ",
+							"otherinfo": "\uFFFDP%\uFFFD\u0667\uFFFDR\uFFFDi\uFFFD'\uFFFD\uFFFD{x0\uFFFD\uFFFDZ\uFFFDWi\uFFFD\\x0001\uFFFD*i\uFFFDN\uFFFDA\uFFFDm\uFFFD\\x0019q\uFFFD\uFFFDa\uFFFD\uFFFD1\uFFFD\\x0018\uFFFD\uFFFD\uFFFDs\uFFFDmITEkP\uFFFD^\\x0012\uFFFD\uFFFD\\x0004\uFFFD\uFFFD\uFFFD\uFFFDG\\x0010\\x000f\uFFFD\\x0005k\uFFFD&\uFFFDJ\uFFFD\\x0015\uFFFD\uFFFD`\uFFFD\\x0001\uFFFDH\uFFFD\r\uFFFD\\x0011F\uFFFD{\\x0019"
+						},
+						{
+							"id": "49",
+							"uri": "https://kripto-piyasa-panosu.pages.dev/.well-known/security.txt",
+							"nodeName": "https:\/\/kripto-piyasa-panosu.pages.dev\/.well-known\/security.txt",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "2F0fRgdyTGXVtm94SsligsQhWSgYXV5W6GBYQM",
+							"otherinfo": "\uFFFD]\\x001fF\\x0007rLe\u0576oxJ\uFFFDb\uFFFD\uFFFD!Y(\\x0018]^V\uFFFD`X@"
+						},
+						{
+							"id": "59",
+							"uri": "https://kripto-piyasa-panosu.pages.dev/assets/index-Cg5DHePA.js",
+							"nodeName": "https:\/\/kripto-piyasa-panosu.pages.dev\/assets\/index-Cg5DHePA.js",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "DlkTFcnoP4IBO1O6yEJrIeqgj3SyI0",
+							"otherinfo": "\\x000eY\\x0013\\x0015\uFFFD\uFFFD?\uFFFD\\x0001;S\uFFFD\uFFFDBk!\uA80Ft\uFFFD#"
+						},
+						{
+							"id": "48",
+							"uri": "https://kripto-piyasa-panosu.pages.dev/assets/index-Dm2fdJpP.css",
+							"nodeName": "https:\/\/kripto-piyasa-panosu.pages.dev\/assets\/index-Dm2fdJpP.css",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "2FvypqVqoceG2l2aMaxeRK7dA1JDCsMZpVplL9P6h9YLqpnUl83iF1V4rZhHziIH2QdUjcnW11n2Bnn6FDFRCQCZYI",
+							"otherinfo": "\uFFFD[\uFFFDj\uFFFD\u01C6\uFFFD]\uFFFD1\uFFFD^D\uFFFD\uFFFD\\x0003RC\n\uFFFD\\x0019\uFFFDZe/\uFFFD\uFFFD\uFFFD\uFFFD\\x000b\uFFFD\uFFFD\u0517\uFFFD\uFFFD\\x0017Ux\uFFFD\uFFFDG\uFFFD\"\\x0007\uFFFD\\x0007T\uFFFD\uFFFD\uFFFD\uFFFDY\uFFFD\\x0006y\uFFFD\\x00141Q\t\\x0000\uFFFD`"
+						},
+						{
+							"id": "41",
+							"uri": "https://kripto-piyasa-panosu.pages.dev/favicon.svg",
+							"nodeName": "https:\/\/kripto-piyasa-panosu.pages.dev\/favicon.svg",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "2BlgEAp0PUILVHVl54pqlSb32dhYCQ5lHkTPuTBdAkKQ",
+							"otherinfo": "\uFFFD\\x0019`\\x0010\nt=B\\x000bTue\uFFFDj\uFFFD&\uFFFD\uFFFD\uFFFDX\t\\x000ee\\x001eD\u03F90]\\x0002B\uFFFD"
+						},
+						{
+							"id": "56",
+							"uri": "https://kripto-piyasa-panosu.pages.dev/manifest.webmanifest",
+							"nodeName": "https:\/\/kripto-piyasa-panosu.pages.dev\/manifest.webmanifest",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "2BFhExqTxEd8TJMIqIYuXx0HH2ssslSFWew8ezIbvG2bAMWuLqPRojyueLbn0PJN74l9Dd",
+							"otherinfo": "\uFFFD\\x0011a\\x0013\\x001a\uFFFD\uFFFDG|L\uFFFD\\x0008\uFFFD\uFFFD._\\x001d\\x0007\\x001fk,\uFFFDT\uFFFDY\uFFFD<{2\\x001b\uFFFDm\uFFFD\\x0000\u016E.\uFFFD\u0462<\uFFFDx\uFFFD\uFFFD\uFFFD\uFFFDM\uFFFD}\r"
+						},
+						{
+							"id": "27",
+							"uri": "https://kripto-piyasa-panosu.pages.dev/sitemap.xml",
+							"nodeName": "https:\/\/kripto-piyasa-panosu.pages.dev\/sitemap.xml",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "Xiik0J9d8X2HvlOVUsR14QE1UTrnfkddHjjXGp2nvSzFODJ0jI9Cdb",
+							"otherinfo": "^(\uFFFD\u041F]\uFFFD}\uFFFD\uFFFDS\uFFFDR\uFFFDu\uFFFD\\x00015Q:\uFFFD~G]\\x001e8\uFFFD\\x001a\uFFFD\uFFFD\uFFFD,\uFFFD82t\uFFFD\uFFFDBu"
+						}
+					],
+					"count": "9",
+					"systemic": false,
+					"solution": "<p>Manually confirm that the Base64 data does not leak sensitive information, and that the data cannot be aggregated/used to exploit other vulnerabilities.</p>",
+					"otherinfo": "<p>\uFFFDV\uFFFDI'\uFFFD[\uFFFDq#,\\x0018\\x0008\uFFFD\\\\x000c\uFFFD\uFFFD7\uFFFD%\uFFFD\uFFFD\uFFFD7\uFFFD\uFFFD\uFFFD\uFFFD\uFFFDm0\uFFFDX\uFFFD4\uFFFD</p>",
+					"reference": "<p>https://projects.webappsec.org/w/page/13246936/Information%20Leakage</p>",
+					"cweid": "319",
+					"wascid": "13",
+					"sourceid": "6"
+				},
+				{
+					"pluginid": "10015",
+					"alertRef": "10015",
+					"alert": "Re-examine Cache-control Directives",
+					"name": "Re-examine Cache-control Directives",
+					"riskcode": "0",
+					"confidence": "1",
+					"riskdesc": "Informational (Low)",
+					"desc": "<p>The cache-control header has not been set properly or is missing, allowing the browser and proxies to cache content. For static assets like css, js, or image files this might be intended, however, the resources should be reviewed to ensure that no sensitive content will be cached.</p>",
+					"instances":[ 
+						{
+							"id": "0",
+							"uri": "https://kripto-piyasa-panosu.pages.dev",
+							"nodeName": "https:\/\/kripto-piyasa-panosu.pages.dev",
+							"method": "GET",
+							"param": "cache-control",
+							"attack": "",
+							"evidence": "public, max-age=0, must-revalidate",
+							"otherinfo": ""
+						},
+						{
+							"id": "39",
+							"uri": "https://kripto-piyasa-panosu.pages.dev/",
+							"nodeName": "https:\/\/kripto-piyasa-panosu.pages.dev\/",
+							"method": "GET",
+							"param": "cache-control",
+							"attack": "",
+							"evidence": "public, max-age=0, must-revalidate",
+							"otherinfo": ""
+						},
+						{
+							"id": "42",
+							"uri": "https://kripto-piyasa-panosu.pages.dev/.well-known/security.txt",
+							"nodeName": "https:\/\/kripto-piyasa-panosu.pages.dev\/.well-known\/security.txt",
+							"method": "GET",
+							"param": "cache-control",
+							"attack": "",
+							"evidence": "public, max-age=0, must-revalidate",
+							"otherinfo": ""
+						},
+						{
+							"id": "2",
+							"uri": "https://kripto-piyasa-panosu.pages.dev/robots.txt",
+							"nodeName": "https:\/\/kripto-piyasa-panosu.pages.dev\/robots.txt",
+							"method": "GET",
+							"param": "cache-control",
+							"attack": "",
+							"evidence": "public, max-age=0, must-revalidate",
+							"otherinfo": ""
+						},
+						{
+							"id": "8",
+							"uri": "https://kripto-piyasa-panosu.pages.dev/sitemap.xml",
+							"nodeName": "https:\/\/kripto-piyasa-panosu.pages.dev\/sitemap.xml",
+							"method": "GET",
+							"param": "cache-control",
+							"attack": "",
+							"evidence": "public, max-age=0, must-revalidate",
+							"otherinfo": ""
+						}
+					],
+					"count": "5",
+					"systemic": true,
+					"solution": "<p>For secure content, ensure the cache-control HTTP header is set with \"no-cache, no-store, must-revalidate\". If an asset should be cached consider setting the directives \"public, max-age, immutable\".</p>",
+					"otherinfo": "",
+					"reference": "<p>https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html#web-content-caching</p><p>https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Cache-Control</p><p>https://grayduck.mn/2021/09/13/cache-control-recommendations/</p>",
+					"cweid": "525",
+					"wascid": "13",
+					"sourceid": "6"
+				},
+				{
+					"pluginid": "90005",
+					"alertRef": "90005-3",
+					"alert": "Sec-Fetch-Dest Header is Missing",
+					"name": "Sec-Fetch-Dest Header is Missing",
+					"riskcode": "0",
+					"confidence": "3",
+					"riskdesc": "Informational (High)",
+					"desc": "<p>Specifies how and where the data would be used. For instance, if the value is audio, then the requested resource must be audio data and not any other type of resource.</p>",
+					"instances":[ 
+						{
+							"id": "25",
+							"uri": "https://kripto-piyasa-panosu.pages.dev",
+							"nodeName": "https:\/\/kripto-piyasa-panosu.pages.dev",
+							"method": "GET",
+							"param": "Sec-Fetch-Dest",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": ""
+						},
+						{
+							"id": "14",
+							"uri": "https://kripto-piyasa-panosu.pages.dev/robots.txt",
+							"nodeName": "https:\/\/kripto-piyasa-panosu.pages.dev\/robots.txt",
+							"method": "GET",
+							"param": "Sec-Fetch-Dest",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": ""
+						},
+						{
+							"id": "34",
+							"uri": "https://kripto-piyasa-panosu.pages.dev/sitemap.xml",
+							"nodeName": "https:\/\/kripto-piyasa-panosu.pages.dev\/sitemap.xml",
+							"method": "GET",
+							"param": "Sec-Fetch-Dest",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": ""
+						}
+					],
+					"count": "3",
+					"systemic": false,
+					"solution": "<p>Ensure that Sec-Fetch-Dest header is included in request headers.</p>",
+					"otherinfo": "",
+					"reference": "<p>https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Sec-Fetch-Dest</p>",
+					"cweid": "352",
+					"wascid": "9",
+					"sourceid": "1"
+				},
+				{
+					"pluginid": "90005",
+					"alertRef": "90005-2",
+					"alert": "Sec-Fetch-Mode Header is Missing",
+					"name": "Sec-Fetch-Mode Header is Missing",
+					"riskcode": "0",
+					"confidence": "3",
+					"riskdesc": "Informational (High)",
+					"desc": "<p>Allows to differentiate between requests for navigating between HTML pages and requests for loading resources like images, audio etc.</p>",
+					"instances":[ 
+						{
+							"id": "24",
+							"uri": "https://kripto-piyasa-panosu.pages.dev",
+							"nodeName": "https:\/\/kripto-piyasa-panosu.pages.dev",
+							"method": "GET",
+							"param": "Sec-Fetch-Mode",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": ""
+						},
+						{
+							"id": "13",
+							"uri": "https://kripto-piyasa-panosu.pages.dev/robots.txt",
+							"nodeName": "https:\/\/kripto-piyasa-panosu.pages.dev\/robots.txt",
+							"method": "GET",
+							"param": "Sec-Fetch-Mode",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": ""
+						},
+						{
+							"id": "30",
+							"uri": "https://kripto-piyasa-panosu.pages.dev/sitemap.xml",
+							"nodeName": "https:\/\/kripto-piyasa-panosu.pages.dev\/sitemap.xml",
+							"method": "GET",
+							"param": "Sec-Fetch-Mode",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": ""
+						}
+					],
+					"count": "3",
+					"systemic": false,
+					"solution": "<p>Ensure that Sec-Fetch-Mode header is included in request headers.</p>",
+					"otherinfo": "",
+					"reference": "<p>https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Sec-Fetch-Mode</p>",
+					"cweid": "352",
+					"wascid": "9",
+					"sourceid": "1"
+				},
+				{
+					"pluginid": "90005",
+					"alertRef": "90005-1",
+					"alert": "Sec-Fetch-Site Header is Missing",
+					"name": "Sec-Fetch-Site Header is Missing",
+					"riskcode": "0",
+					"confidence": "3",
+					"riskdesc": "Informational (High)",
+					"desc": "<p>Specifies the relationship between request initiator's origin and target's origin.</p>",
+					"instances":[ 
+						{
+							"id": "23",
+							"uri": "https://kripto-piyasa-panosu.pages.dev",
+							"nodeName": "https:\/\/kripto-piyasa-panosu.pages.dev",
+							"method": "GET",
+							"param": "Sec-Fetch-Site",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": ""
+						},
+						{
+							"id": "12",
+							"uri": "https://kripto-piyasa-panosu.pages.dev/robots.txt",
+							"nodeName": "https:\/\/kripto-piyasa-panosu.pages.dev\/robots.txt",
+							"method": "GET",
+							"param": "Sec-Fetch-Site",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": ""
+						},
+						{
+							"id": "28",
+							"uri": "https://kripto-piyasa-panosu.pages.dev/sitemap.xml",
+							"nodeName": "https:\/\/kripto-piyasa-panosu.pages.dev\/sitemap.xml",
+							"method": "GET",
+							"param": "Sec-Fetch-Site",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": ""
+						}
+					],
+					"count": "3",
+					"systemic": false,
+					"solution": "<p>Ensure that Sec-Fetch-Site header is included in request headers.</p>",
+					"otherinfo": "",
+					"reference": "<p>https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Sec-Fetch-Site</p>",
+					"cweid": "352",
+					"wascid": "9",
+					"sourceid": "1"
+				},
+				{
+					"pluginid": "90005",
+					"alertRef": "90005-4",
+					"alert": "Sec-Fetch-User Header is Missing",
+					"name": "Sec-Fetch-User Header is Missing",
+					"riskcode": "0",
+					"confidence": "3",
+					"riskdesc": "Informational (High)",
+					"desc": "<p>Specifies if a navigation request was initiated by a user.</p>",
+					"instances":[ 
+						{
+							"id": "26",
+							"uri": "https://kripto-piyasa-panosu.pages.dev",
+							"nodeName": "https:\/\/kripto-piyasa-panosu.pages.dev",
+							"method": "GET",
+							"param": "Sec-Fetch-User",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": ""
+						},
+						{
+							"id": "15",
+							"uri": "https://kripto-piyasa-panosu.pages.dev/robots.txt",
+							"nodeName": "https:\/\/kripto-piyasa-panosu.pages.dev\/robots.txt",
+							"method": "GET",
+							"param": "Sec-Fetch-User",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": ""
+						},
+						{
+							"id": "36",
+							"uri": "https://kripto-piyasa-panosu.pages.dev/sitemap.xml",
+							"nodeName": "https:\/\/kripto-piyasa-panosu.pages.dev\/sitemap.xml",
+							"method": "GET",
+							"param": "Sec-Fetch-User",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": ""
+						}
+					],
+					"count": "3",
+					"systemic": false,
+					"solution": "<p>Ensure that Sec-Fetch-User header is included in user initiated requests.</p>",
+					"otherinfo": "",
+					"reference": "<p>https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Sec-Fetch-User</p>",
+					"cweid": "352",
+					"wascid": "9",
+					"sourceid": "1"
+				},
+				{
+					"pluginid": "10049",
+					"alertRef": "10049-3",
+					"alert": "Storable and Cacheable Content",
+					"name": "Storable and Cacheable Content",
+					"riskcode": "0",
+					"confidence": "2",
+					"riskdesc": "Informational (Medium)",
+					"desc": "<p>The response contents are storable by caching components such as proxy servers, and may be retrieved directly from the cache, rather than from the origin server by the caching servers, in response to similar requests from other users. If the response data is sensitive, personal or user-specific, this may result in sensitive information being leaked. In some cases, this may even result in a user gaining complete control of the session of another user, depending on the configuration of the caching components in use in their environment. This is primarily an issue where \"shared\" caching servers such as \"proxy\" caches are configured on the local network. This configuration is typically found in corporate or educational environments, for instance.</p>",
+					"instances":[ 
+						{
+							"id": "58",
+							"uri": "https://kripto-piyasa-panosu.pages.dev/assets/index-Cg5DHePA.js",
+							"nodeName": "https:\/\/kripto-piyasa-panosu.pages.dev\/assets\/index-Cg5DHePA.js",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "max-age=31536000",
+							"otherinfo": ""
+						},
+						{
+							"id": "47",
+							"uri": "https://kripto-piyasa-panosu.pages.dev/assets/index-Dm2fdJpP.css",
+							"nodeName": "https:\/\/kripto-piyasa-panosu.pages.dev\/assets\/index-Dm2fdJpP.css",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "max-age=31536000",
+							"otherinfo": ""
+						}
+					],
+					"count": "2",
+					"systemic": false,
+					"solution": "<p>Validate that the response does not contain sensitive, personal or user-specific information. If it does, consider the use of the following HTTP response headers, to limit, or prevent the content being stored and retrieved from the cache by another user:</p><p>Cache-Control: no-cache, no-store, must-revalidate, private</p><p>Pragma: no-cache</p><p>Expires: 0</p><p>This configuration directs both HTTP 1.0 and HTTP 1.1 compliant caching servers to not store the response, and to not retrieve the response (without validation) from the cache, in response to a similar request.</p>",
+					"otherinfo": "",
+					"reference": "<p>https://datatracker.ietf.org/doc/html/rfc7234</p><p>https://datatracker.ietf.org/doc/html/rfc7231</p><p>https://www.w3.org/Protocols/rfc2616/rfc2616-sec13.html</p>",
+					"cweid": "524",
+					"wascid": "13",
+					"sourceid": "22"
+				},
+				{
+					"pluginid": "10049",
+					"alertRef": "10049-2",
+					"alert": "Storable but Non-Cacheable Content",
+					"name": "Storable but Non-Cacheable Content",
+					"riskcode": "0",
+					"confidence": "2",
+					"riskdesc": "Informational (Medium)",
+					"desc": "<p>The response contents are storable by caching components such as proxy servers, but will not be retrieved directly from the cache, without validating the request upstream, in response to similar requests from other users.</p>",
+					"instances":[ 
+						{
+							"id": "16",
+							"uri": "https://kripto-piyasa-panosu.pages.dev",
+							"nodeName": "https:\/\/kripto-piyasa-panosu.pages.dev",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "max-age=0",
+							"otherinfo": ""
+						},
+						{
+							"id": "46",
+							"uri": "https://kripto-piyasa-panosu.pages.dev/.well-known/security.txt",
+							"nodeName": "https:\/\/kripto-piyasa-panosu.pages.dev\/.well-known\/security.txt",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "max-age=0",
+							"otherinfo": ""
+						},
+						{
+							"id": "40",
+							"uri": "https://kripto-piyasa-panosu.pages.dev/favicon.svg",
+							"nodeName": "https:\/\/kripto-piyasa-panosu.pages.dev\/favicon.svg",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "max-age=0",
+							"otherinfo": ""
+						},
+						{
+							"id": "11",
+							"uri": "https://kripto-piyasa-panosu.pages.dev/robots.txt",
+							"nodeName": "https:\/\/kripto-piyasa-panosu.pages.dev\/robots.txt",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "max-age=0",
+							"otherinfo": ""
+						},
+						{
+							"id": "20",
+							"uri": "https://kripto-piyasa-panosu.pages.dev/sitemap.xml",
+							"nodeName": "https:\/\/kripto-piyasa-panosu.pages.dev\/sitemap.xml",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "max-age=0",
+							"otherinfo": ""
+						}
+					],
+					"count": "5",
+					"systemic": true,
+					"solution": "",
+					"otherinfo": "",
+					"reference": "<p>https://datatracker.ietf.org/doc/html/rfc7234</p><p>https://datatracker.ietf.org/doc/html/rfc7231</p><p>https://www.w3.org/Protocols/rfc2616/rfc2616-sec13.html</p>",
+					"cweid": "524",
+					"wascid": "13",
+					"sourceid": "1"
+				}
+			]
+		}
+	],
+	"sequences":[
+	]
+
+}
