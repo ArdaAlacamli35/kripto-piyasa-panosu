@@ -1,0 +1,46 @@
+[
+  {
+    "test": "XSS: sembol alanında <img onerror>",
+    "yuk": "{\"stream\":\"btcusdt@ticker\",\"data\":{\"e\":\"24hrTicker\",\"E\":1793266194977,\"s\":\"<img src=x onerror=\\\"window.__xss=1;alert(1)\\\">\",\"p\":\"1\",\"P\":\"-1.828\",\"c\":\"67219.6371\",\"h\":\"68564.0298\",\"l\":\"65875.2444\",\"v\":\"1000\",\"q\":\"6721963709.86\"}}"
+  },
+  {
+    "test": "XSS: fiyat alanında <script>",
+    "yuk": "{\"stream\":\"btcusdt@ticker\",\"data\":{\"e\":\"24hrTicker\",\"E\":1793266194977,\"s\":\"BTCUSDT\",\"p\":\"1\",\"P\":\"-0.698\",\"c\":\"<script>window.__xss=1</script>\",\"h\":\"68560.4463\",\"l\":\"65871.8014\",\"v\":\"1000\",\"q\":\"6721612383.90\"}}"
+  },
+  {
+    "test": "XSS: akış adında",
+    "yuk": "{\"stream\":\"<svg/onload=alert(1)>@ticker\",\"data\":{\"e\":\"24hrTicker\",\"E\":1793266194977,\"s\":\"BTCUSDT\",\"p\":\"1\",\"P\":\"-1.272\",\"c\":\"67258.7654\",\"h\":\"68603.9407\",\"l\":\"65913.5901\",\"v\":\"1000\",\"q\":\"6725876538.62\"}}"
+  },
+  {
+    "test": "Akış ile sembol uyuşmuyor (sahte ETH akışında BTC)",
+    "yuk": "{\"stream\":\"ethusdt@ticker\",\"data\":{\"e\":\"24hrTicker\",\"E\":1793266194977,\"s\":\"BTCUSDT\",\"p\":\"1\",\"P\":\"3.314\",\"c\":\"67201.8706\",\"h\":\"68545.9080\",\"l\":\"65857.8332\",\"v\":\"1000\",\"q\":\"6720187060.03\"}}"
+  },
+  {
+    "test": "Bilinmeyen sembol (DOGEUSDT)",
+    "yuk": "{\"stream\":\"dogeusdt@ticker\",\"data\":{\"e\":\"24hrTicker\",\"E\":1793266194977,\"s\":\"DOGEUSDT\",\"p\":\"1\",\"P\":\"1.363\",\"c\":\"67185.8677\",\"h\":\"68529.5851\",\"l\":\"65842.1504\",\"v\":\"1000\",\"q\":\"6718586774.03\"}}"
+  },
+  {
+    "test": "Sayı istismarı: 1e309 (sonsuz)",
+    "yuk": "{\"stream\":\"btcusdt@ticker\",\"data\":{\"e\":\"24hrTicker\",\"E\":1793266194977,\"s\":\"BTCUSDT\",\"p\":\"1\",\"P\":\"-1.532\",\"c\":\"1e309\",\"h\":\"68584.3893\",\"l\":\"65894.8054\",\"v\":\"1000\",\"q\":\"6723959736.48\"}}"
+  },
+  {
+    "test": "Sayı istismarı: NaN",
+    "yuk": "{\"stream\":\"btcusdt@ticker\",\"data\":{\"e\":\"24hrTicker\",\"E\":1793266194977,\"s\":\"BTCUSDT\",\"p\":\"1\",\"P\":\"NaN\",\"c\":\"67279.3064\",\"h\":\"68624.8926\",\"l\":\"65933.7203\",\"v\":\"1000\",\"q\":\"6727930644.87\"}}"
+  },
+  {
+    "test": "Negatif fiyat",
+    "yuk": "{\"stream\":\"btcusdt@ticker\",\"data\":{\"e\":\"24hrTicker\",\"E\":1793266194977,\"s\":\"BTCUSDT\",\"p\":\"1\",\"P\":\"1.525\",\"c\":\"-1\",\"h\":\"68637.5481\",\"l\":\"65945.8796\",\"v\":\"1000\",\"q\":\"6729171385.29\"}}"
+  },
+  {
+    "test": "Tür karmaşası: fiyat nesne",
+    "yuk": "{\"stream\":\"btcusdt@ticker\",\"data\":{\"e\":\"24hrTicker\",\"E\":1793266194977,\"s\":\"BTCUSDT\",\"p\":\"1\",\"P\":\"-1.879\",\"c\":{\"toString\":\"x\"},\"h\":\"68650.9426\",\"l\":\"65958.7488\",\"v\":\"1000\",\"q\":\"6730484567.14\"}}"
+  },
+  {
+    "test": "JSON olmayan ham HTML",
+    "yuk": "<script>window.__xss=1</script>"
+  },
+  {
+    "test": "Aşırı büyük mesaj (20 KB)",
+    "yuk": "{\"stream\":\"btcusdt@ticker\",\"data\":{\"e\":\"24hrTicker\",\"E\":1793266194977,\"s\":\"BTCUSDT\",\"p\":\"1\",\"P\":\"0.235\",\"c\":\"67194.5110\",\"h\":\"68538.4013\",\"l\":\"65850.6208\",\"v\":\"1000\",\"q\":\"6719451104.92\",\"pad\":\"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+  }
+]
