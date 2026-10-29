@@ -1,0 +1,31 @@
+flowchart LR
+  subgraph TB1["Güven sınırı 1: Kullanıcının tarayıcısı (güvenilmez ortam)"]
+    U([Öğrenci / kullanıcı])
+    APP["Pano uygulaması (JS)<br/>zod şema doğrulama<br/>yalnızca textContent<br/>Trusted Types"]
+    LS[("localStorage<br/>son başarılı veri")]
+  end
+  subgraph TB2["Güven sınırı 2: Cloudflare edge (bizim kontrolümüzde)"]
+    PAGES["Cloudflare Pages<br/>statik dosyalar (dist/)"]
+    MW["Pages Functions _middleware<br/>CSP · HSTS · güvenlik başlıkları"]
+    REP["/csp-report<br/>ihlal raporu toplayıcı"]
+    LOG[("Workers logları")]
+  end
+  subgraph TB3["Güven sınırı 3: Üçüncü taraf (güvenilmez veri kaynağı)"]
+    REST["Binance REST<br/>data-api.binance.vision"]
+    WS["Binance WebSocket<br/>data-stream.binance.vision"]
+  end
+  subgraph TB4["Güven sınırı 4: CI/CD (GitHub)"]
+    GH["GitHub deposu<br/>branch protection"]
+    GA["GitHub Actions<br/>en az yetki · gitleaks · npm audit"]
+    SEC[("GitHub Secrets<br/>CLOUDFLARE_API_TOKEN")]
+  end
+  U -->|HTTPS| PAGES
+  PAGES --> MW --> APP
+  APP -->|"HTTPS GET (anahtarsız)"| REST
+  WS -->|"wss:// ticker akışı ⚠ güvenilmez girdi"| APP
+  APP <--> LS
+  APP -->|CSP ihlali| REP --> LOG
+  GH --> GA
+  SEC -.->|yalnızca Actions içinde| GA
+  GA -->|"snapshot.json + derleme"| REST
+  GA -->|"wrangler pages deploy"| PAGES
