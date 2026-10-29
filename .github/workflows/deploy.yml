@@ -32,7 +32,7 @@ jobs:
         continue-on-error: true # Binance yanıt vermezse yayın yine de yapılır
       - run: npm run build
       - name: Cloudflare Pages'e yükle
-        uses: cloudflare/wrangler-action@9acf94ace14e7dc412b076f2c5c20b8ce93c79cd # v3.15.0
+        uses: cloudflare/wrangler-action@953926a2e2182532811c01a25e53647d93bf07c0 # v4.1.3
         with:
           # Token yalnızca "Cloudflare Pages: Edit" iznine sahip; GitHub Secrets'ta saklanır.
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
