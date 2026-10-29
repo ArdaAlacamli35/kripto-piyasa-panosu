@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#121315">
+  <meta name="description" content="Beş kripto varlığın canlı fiyatını, 24 saatlik getirisini ve getiri korelasyonunu gösteren eğitim amaçlı pano.">
+  <title>Canlı Kripto Piyasa Panosu | Arda Alaçamlı</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <script type="module" src="/src/main.js"></script>
+</head>
+<body>
+  <a class="skip" href="#icerik">İçeriğe geç</a>
+
+  <header class="top">
+    <div class="wrap top-row">
+      <div>
+        <p class="eyebrow">Eğitim amaçlı pano · Kurgusal müşteri: üniversite finans kulübü</p>
+        <h1>Canlı Kripto Piyasa Panosu</h1>
+      </div>
+      <div class="conn" id="conn" role="status" aria-live="polite">
+        <span class="conn-icon" aria-hidden="true">○</span>
+        <span class="conn-text">Bağlanıyor…</span>
+        <button type="button" class="btn small" id="reconnect" hidden>Şimdi yeniden bağlan</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="icerik" class="wrap">
+    <p class="disclaimer" role="note">
+      <strong>Yatırım tavsiyesi değildir.</strong> Bu pano yalnızca bilgilendirme ve eğitim amaçlıdır.
+      Kripto varlık hizmet sağlayıcılarına ilişkin resmî bilgi için
+      <a href="https://spk.gov.tr" target="_blank" rel="noopener noreferrer">Sermaye Piyasası Kurulu</a>'na bakın.
+    </p>
+
+    <div class="banner" id="banner" role="alert" hidden></div>
+
+    <p class="meta">
+      Son güncelleme: <time id="updated">—</time> ·
+      Veri kaynağı: <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints" target="_blank" rel="noopener noreferrer">Binance herkese açık piyasa verisi API'si</a> (anahtarsız)
+    </p>
+
+    <section class="controls" aria-labelledby="kontrol-baslik">
+      <h2 id="kontrol-baslik" class="sr-only">Filtreler</h2>
+      <div class="field">
+        <label for="f-asset">Varlık</label>
+        <select id="f-asset"></select>
+      </div>
+      <div class="field">
+        <span class="label" id="f-range-label">Zaman aralığı</span>
+        <div class="seg" role="radiogroup" aria-labelledby="f-range-label" id="f-range"></div>
+      </div>
+      <div class="field">
+        <label for="f-search">Tabloda ara</label>
+        <input id="f-search" type="search" placeholder="ör. BTC, Ether" autocomplete="off" maxlength="20">
+      </div>
+      <div class="field">
+        <label for="f-dir">Yön</label>
+        <select id="f-dir">
+          <option value="all">Tümü</option>
+          <option value="up">Yalnızca yükselenler</option>
+          <option value="down">Yalnızca düşenler</option>
+        </select>
+      </div>
+    </section>
+
+    <section class="kpis" aria-label="Öne çıkan göstergeler" id="kpis">
+      <article class="kpi skeleton" aria-busy="true"><h2 class="kpi-label">Fiyat</h2><p class="kpi-value">&nbsp;</p><p class="kpi-sub">&nbsp;</p></article>
+      <article class="kpi skeleton" aria-busy="true"><h2 class="kpi-label">24 saatlik değişim</h2><p class="kpi-value">&nbsp;</p><p class="kpi-sub">&nbsp;</p></article>
+      <article class="kpi skeleton" aria-busy="true"><h2 class="kpi-label">24 saatlik işlem hacmi</h2><p class="kpi-value">&nbsp;</p><p class="kpi-sub">&nbsp;</p></article>
+    </section>
+
+    <div class="grid">
+      <section class="panel main-chart" aria-labelledby="ana-baslik">
+        <h2 id="ana-baslik">Fiyat seyri</h2>
+        <p class="summary" id="main-summary" aria-live="polite"></p>
+        <div class="chart skeleton" id="main-chart" tabindex="0" role="img" aria-labelledby="ana-baslik main-summary"></div>
+        <details class="as-table"><summary>Veriyi tablo olarak gör</summary><div id="main-table"></div></details>
+      </section>
+
+      <section class="panel" aria-labelledby="bar-baslik">
+        <h2 id="bar-baslik">24 saatlik getiri karşılaştırması</h2>
+        <p class="summary" id="bar-summary"></p>
+        <div class="chart skeleton" id="bar-chart" role="img" aria-labelledby="bar-baslik bar-summary"></div>
+        <details class="as-table"><summary>Veriyi tablo olarak gör</summary><div id="bar-table"></div></details>
+      </section>
+
+      <section class="panel" aria-labelledby="corr-baslik">
+        <h2 id="corr-baslik">24 saatlik getiri korelasyonu</h2>
+        <p class="summary" id="corr-summary"></p>
+        <p class="hint">5 dakikalık logaritmik getirilerin Pearson korelasyonu. 1'e yakın değer iki varlığın birlikte hareket ettiğini gösterir.</p>
+        <div id="corr" class="corr skeleton"></div>
+      </section>
+    </div>
+
+    <section class="panel" aria-labelledby="tablo-baslik">
+      <h2 id="tablo-baslik">Varlık tablosu</h2>
+      <p class="hint">Sütun başlıklarına tıklayarak veya Enter'a basarak sıralayabilirsiniz.</p>
+      <div class="table-wrap" id="detail"></div>
+    </section>
+  </main>
+
+  <footer class="foot wrap">
+    <p>Arda Alaçamlı · BVA 2245 Kullanıcı Arayüzü Tasarımı · Ürün, gerçek bir kurumla iş birliği değildir.</p>
+    <p class="mono">Doğrulamayı geçemeyen mesaj: <span id="rejected">0</span> · Alınan mesaj: <span id="received">0</span></p>
+    <p><a href="https://github.com/ArdaAlacamli35/kripto-piyasa-panosu" target="_blank" rel="noopener noreferrer">Kaynak kod</a> · <a href="/.well-known/security.txt">security.txt</a></p>
+  </footer>
+</body>
+</html>
