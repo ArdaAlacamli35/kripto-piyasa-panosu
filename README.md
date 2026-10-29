@@ -3,7 +3,8 @@
 Beş kripto varlığın (BTC, ETH, BNB, SOL, XRP) fiyatını **WebSocket ile canlı** izleyen, bağlantı koptuğunda kendini toparlayan ve varlıklar arası **24 saatlik getiri korelasyonunu** gösteren eğitim amaçlı karar destek panosu. Sıkı CSP, Trusted Types ve gelen her mesaja şema doğrulamasıyla Cloudflare'de yayında.
 
 - **Canlı:** https://kripto-piyasa-panosu.pages.dev
-- **Vaka çalışması:** https://ardaalacamli.vercel.app/projeler/kripto-piyasa-panosu
+- **Vaka çalışması ve demo videosu:** https://ardaalacamli.vercel.app/projeler/kripto-piyasa-panosu
+- **Kullanıcı testi:** [`docs/kullanici-testi.md`](docs/kullanici-testi.md) · **Güvenlik raporu:** [`docs/guvenlik-raporu.pdf`](docs/guvenlik-raporu.pdf)
 - Kurgusal müşteri: Bir üniversite finans kulübü (eğitim amaçlı). Gerçek bir kurumla iş birliği değildir.
 - ⚠️ **Bilgilendirme amaçlıdır, yatırım tavsiyesi değildir.** Resmî bilgi için: [SPK](https://spk.gov.tr)
 
@@ -69,4 +70,4 @@ Yayın için GitHub Secrets: `CLOUDFLARE_API_TOKEN` (yalnızca Cloudflare Pages:
 Bu projede **Claude (Anthropic)** kullanıldı.
 - **Hangi iş için:** Uygulama kodunun (WebSocket istemcisi, şemalar, D3 grafikleri, arayüz), edge güvenlik başlıklarının, GitHub Actions iş akışlarının, güvenlik testinin ve belgelerin (tehdit modeli, runbook) hazırlanması.
 - **Doğrulama:** Güvenlik testi gerçek bir tarayıcıda (Chromium) çalıştırıldı ve 24/24 kontrol geçti. Test sırasında üç sorun bulunup düzeltildi: zod'un `Function()` yoklaması her açılışta CSP ihlali üretiyordu (jitless moda alındı); servis çalışanı kaydı Trusted Types'a takılıyordu (tek izinli `sw` politikası eklendi); `report-to` raporları geciktiriyordu (`report-uri` kullanıldı).
-- **Benim katkım / değişikliklerim:** _(Arda: kodu inceleyip neyi değiştirdiğini, neyi kendin yazdığını buraya ekle.)_
+- **Benim katkım:** Cloudflare ve GitHub hesaplarını, API token'larını (en az yetkiyle), GitHub güvenlik ayarlarını, branch protection'ı ve bütçe alarmını kendim kurdum; PR'ları inceleyip birleştirdim. Kullanıcı testini iki sınıf arkadaşımla yaptım; bulgulara göre "Bugün öne çıkanlar" eklendi. Ekran görüntülerini, Lighthouse, Observatory ve securityheaders ölçümlerini ve demo videosunu kendi sistemimde aldım, videonun altyazı metinlerini düzenledim. Kodu satır satır ben yazmadım; her bileşenin ne yaptığını ve neden öyle yapıldığını çalışarak öğrendim.
