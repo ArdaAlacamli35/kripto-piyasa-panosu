@@ -37,4 +37,6 @@ jobs:
           # Token yalnızca "Cloudflare Pages: Edit" iznine sahip; GitHub Secrets'ta saklanır.
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          # İlk çalıştırmada proje yoksa oluşturulur (varsa hata yok sayılır), sonra yüklenir.
+          preCommands: npx wrangler pages project create kripto-piyasa-panosu --production-branch=main || true
           command: pages deploy dist --project-name=kripto-piyasa-panosu --branch=main --commit-dirty=true
