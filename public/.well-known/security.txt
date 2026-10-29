@@ -1,0 +1,6 @@
+# Güvenlik açığı bildirimi — Canlı Kripto Piyasa Panosu (ders projesi)
+Contact: https://github.com/ArdaAlacamli35/kripto-piyasa-panosu/security/advisories/new
+Expires: 2027-06-30T23:59:59.000Z
+Preferred-Languages: tr, en
+Canonical: https://kripto-piyasa-panosu.pages.dev/.well-known/security.txt
+Policy: https://github.com/ArdaAlacamli35/kripto-piyasa-panosu/blob/main/SECURITY.md

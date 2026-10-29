@@ -1,0 +1,9 @@
+# Altyapı kod olarak: Cloudflare Pages projesi.
+# Statik dosyalar (dist/) + functions/ klasöründeki Workers (güvenlik başlıkları ve CSP raporu).
+name = "kripto-piyasa-panosu"
+pages_build_output_dir = "dist"
+compatibility_date = "2025-09-01"
+
+# Üretimde ek connect-src YOK. Yerel test için .dev.vars dosyasında EXTRA_CONNECT_SRC verilir.
+[vars]
+EXTRA_CONNECT_SRC = ""
