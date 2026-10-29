@@ -38,6 +38,8 @@ export const SECURITY_HEADERS = {
   'Permissions-Policy':
     'accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=(), interest-cohort=()',
   'Cross-Origin-Opener-Policy': 'same-origin',
+  // Başka kaynaktan gelen her şey ya CORS ya da CORP ile izin vermeli (Binance REST, CORS ile uyumlu).
+  'Cross-Origin-Embedder-Policy': 'require-corp',
   'Cross-Origin-Resource-Policy': 'same-origin',
 };
 
@@ -51,5 +53,8 @@ export async function onRequest(context) {
   if (path.startsWith('/assets/')) headers.set('Cache-Control', 'public, max-age=31536000, immutable');
   else if (path === '/sw.js') headers.set('Cache-Control', 'no-cache');
   headers.delete('X-Powered-By');
+  // Cloudflare Pages varsayılan olarak her dosyaya "Access-Control-Allow-Origin: *" ekler.
+  // Sitenin içeriğini başka kökenlerin okumasına gerek yok: kaldırılır (ZAP 10098 bulgusu).
+  headers.delete('Access-Control-Allow-Origin');
   return new Response(res.body, { status: res.status, statusText: res.statusText, headers });
 }
