@@ -13,7 +13,7 @@ import { createBarChart } from './charts/bar.js';
 import {
   renderKpis, renderSimpleTable, createDetailTable, renderCorr, corrSummary, setConn, setBanner,
 } from './views.js';
-import { fmtPrice, fmtPct, fmtShortDate, fmtDateTime, direction } from './format.js';
+import { fmtPrice, fmtPct, fmtShortDate, fmtDateTime, fmtCorr, direction } from './format.js';
 
 // ---------- durum ----------
 const state = {
@@ -94,6 +94,7 @@ function renderAll() {
     renderKpis(kpis, t, rangeObj().label, rc);
   }
   renderBar();
+  renderHighlights();
   renderTable();
   setText($('#updated'), state.updatedAt ? fmtDateTime(state.updatedAt) : '—');
   $('#updated').setAttribute('datetime', state.updatedAt ? new Date(state.updatedAt).toISOString() : '');
@@ -157,8 +158,34 @@ function renderTable(force = false) {
   if (keepFocus) $('#detail').querySelector(`button[data-key="${keepFocus}"]`)?.focus();
 }
 
+// Kullanıcı testinden sonra eklendi: iki katılımcı da "en iyi varlık" ve "en ilişkili çift"
+// bilgisini grafiklerden kendisi çıkarmak zorunda kaldı. Bu şerit cevabı tek bakışta veriyor.
+function renderHighlights() {
+  const rows = [...state.tickers.values()];
+  if (!rows.length) return;
+  const best = rows.reduce((a, b) => (b.changePct > a.changePct ? b : a));
+  const worst = rows.reduce((a, b) => (b.changePct < a.changePct ? b : a));
+  const item = (label, sym, value, cls) =>
+    el('li', { class: 'hl' }, [el('span', { class: 'hl-label' }, label), ' ', el('strong', {}, sym), ' ', el('span', { class: `mono ${cls}` }, value)]);
+  const dB = direction(best.changePct), dW = direction(worst.changePct);
+  const items = [
+    item(state.tickers.size && rows.every((r) => r.changePct < 0) ? '24 saatte en az düşen:' : '24 saatte en iyi giden:', SHORT(best.symbol), `${dB.arrow} ${fmtPct(best.changePct)}`, dB.cls),
+    item('24 saatte en kötü giden:', SHORT(worst.symbol), `${dW.arrow} ${fmtPct(worst.changePct)}`, dW.cls),
+  ];
+  if (state.corrM) {
+    const i = SYMBOLS.indexOf(state.asset);
+    let j = -1, v = -2;
+    SYMBOLS.forEach((s, k) => { if (k !== i && state.corrM[i][k] > v) { v = state.corrM[i][k]; j = k; } });
+    if (j >= 0) items.push(item(`${SHORT(state.asset)} ile en çok birlikte hareket eden:`, SHORT(SYMBOLS[j]), `korelasyon ${fmtCorr(v)}`, ''));
+  }
+  const ul = $('#highlights .hl-list');
+  clear(ul);
+  ul.append(...items);
+}
+
 function renderCorrFrom(klines) {
   const { n, m } = correlationMatrix(klines, SYMBOLS);
+  state.corrM = m;
   renderCorr($('#corr'), SYMBOLS, m);
   setText($('#corr-summary'), corrSummary(SYMBOLS, m, n));
 }

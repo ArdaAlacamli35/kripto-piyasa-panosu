@@ -85,6 +85,14 @@ select, input[type="search"] {
 .kpi-value { font-size: clamp(1.35rem, 3vw, 1.9rem); font-weight: 700; margin-top: 4px; letter-spacing: -0.01em; overflow-wrap: anywhere; }
 .kpi-sub { font-size: 0.8125rem; color: var(--sis); margin-top: 2px; }
 
+/* ---------- öne çıkanlar (kullanıcı testi sonrası) ---------- */
+.highlights { margin-top: 12px; background: var(--duvar); border: 1px solid var(--cizgi); border-left: 3px solid var(--artis); border-radius: 10px; padding: 10px 14px; }
+.hl-title { font-size: 0.8125rem; color: var(--sis); font-weight: 600; }
+.hl-list { list-style: none; margin: 4px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 4px 22px; min-height: 1.6em; }
+.hl { font-size: 0.9375rem; }
+.hl.skeleton { width: 160px; background: var(--duvar-2); border-radius: 4px; }
+.hl-label { color: var(--sis); }
+
 /* ---------- paneller ---------- */
 .grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 12px; margin-top: 12px; }
 .main-chart { grid-row: span 2; }
@@ -120,7 +128,7 @@ svg { display: block; max-width: 100%; }
 .bar-svg .zero { stroke: var(--sis); }
 
 /* korelasyon */
-.corr { margin-top: 10px; overflow-x: auto; min-height: 120px; }
+.corr { margin-top: 10px; overflow-x: auto; min-height: 212px; }
 .corr-table { border-collapse: separate; border-spacing: 3px; width: 100%; font-size: 0.8125rem; }
 .corr-table th { color: var(--sis); font-weight: 600; font-family: var(--mono); padding: 2px 4px; }
 .corr-table .cell {
@@ -129,7 +137,7 @@ svg { display: block; max-width: 100%; }
   background: color-mix(in srgb, var(--artis-dolgu) calc(var(--k) * 100%), var(--gece));
 }
 .corr-table .cell.neg { background: color-mix(in srgb, var(--azalis-dolgu) calc(var(--k) * 100%), var(--gece)); }
-.corr-table .cell.strong { color: #0b0c0d; font-weight: 700; }
+.corr-table .cell.strong { color: #fff; font-weight: 700; }
 .corr-table .cell.diag { background: var(--duvar-2); color: var(--sis); font-weight: 400; }
 
 /* tablo */
@@ -169,9 +177,14 @@ th[aria-sort="ascending"] .sort, th[aria-sort="descending"] .sort { color: var(-
   .main-chart { grid-row: auto; }
   .controls { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
+#main-chart { min-height: 220px; }
+#bar-chart { min-height: 180px; }
+@media (min-width: 900px) { #main-chart { min-height: 470px; } .summary { min-height: 3em; } }
 @media (max-width: 560px) {
   .kpis { grid-template-columns: 1fr; }
-  .kpi { min-height: 0; }
+  .kpi { min-height: 104px; }
+  .summary { min-height: 4.5em; }
+  .hl-list { flex-direction: column; min-height: 4.8em; }
   .controls { grid-template-columns: 1fr; }
   .tbl { font-size: 0.875rem; }
   .tbl th, .tbl td { padding: 8px 6px; }
