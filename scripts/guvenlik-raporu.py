@@ -170,9 +170,11 @@ ul {{ margin: 0 0 6pt 15pt; padding: 0; }} li {{ margin-bottom: 2pt; }}
 <li><b>Bağımlılık taraması:</b> <code>npm audit --audit-level=high</code> (yüksek seviyede CI durur), <b>Dependabot</b> uyarıları, güvenlik güncellemeleri ve haftalık sürüm güncellemeleri (npm + GitHub Actions). Kod taraması için <b>CodeQL</b> açıktır.</li>
 <li><b>Tedarik zinciri:</b> Tüm GitHub Actions eklentileri değiştirilemez <b>commit SHA</b> ile sabitlenmiştir (ör. <code>actions/checkout@11d5960… # v4.4.0</code>). Ayrıca <code>npm ci</code> + <code>package-lock.json</code> kullanılır.</li>
 <li><b>Branch protection:</b> <code>main</code> dalına doğrudan push kapalıdır. Değişiklik PR ile gelir ve CI kontrolünün geçmesi zorunludur.</li>
+<li><b>Kanıt:</b> Branch protection açıldıktan sonra doğrudan push denemesi reddedildi; bu rapor ve sonraki tüm değişiklikler PR ile, CI geçtikten sonra birleştirildi (Şekil 2b).</li>
 <li><b>Kendi kodumuz için kural:</b> CI'daki <code>check:dom</code> adımı <code>innerHTML</code>, <code>insertAdjacentHTML</code>, <code>eval</code>, <code>new Function</code> gibi ifadeler bulursa derlemeyi durdurur.</li>
 </ul>
 <div class="iki"><figure>{img(EKRAN / 'github-advanced-security.png')}</figure><figure>{img(EKRAN / 'github-advanced-security-2.png')}</figure></div>
+<figure>{img(EKRAN / 'branch-protection.png', '70%')}<figcaption>Şekil 2b. <code>main</code> dalı için branch protection kuralı: PR zorunlu, <code>kontrol</code> (CI) geçmeden birleştirme yok, yöneticiler dahil atlanamaz.</figcaption></figure>
 <p class="alt" style="margin-top:-2pt">Şekil 2. GitHub Advanced Security: özel güvenlik bildirimi, Dependabot uyarıları ve güvenlik güncellemeleri, CodeQL (varsayılan kurulum), Secret Protection ve push protection açık.</p>
 
 <h2>4. Tehdit modeli (STRIDE)</h2>
