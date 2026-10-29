@@ -1,0 +1,64 @@
+name: Güvenlik taraması (ZAP önce/sonra + Observatory)
+
+# YALNIZCA kendi adreslerimiz taranır. Binance veya başka üçüncü taraf taranmaz.
+# "once":  aynı uygulama, edge güvenlik katmanı (functions/) OLMADAN düz statik hosting
+# "sonra": üretim; _middleware.js ile CSP, HSTS ve diğer başlıklar
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  once-yayini:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci && npm run build
+      - name: Güvenlik katmanı olmadan önizleme dalına yükle
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          cp -r dist /tmp/once
+          cd /tmp && npx --yes wrangler@4 pages deploy /tmp/once --project-name=kripto-piyasa-panosu --branch=once --commit-dirty=true
+
+  tara:
+    needs: once-yayini
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - ad: once
+            hedef: https://once.kripto-piyasa-panosu.pages.dev
+          - ad: sonra
+            hedef: https://kripto-piyasa-panosu.pages.dev
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: ZAP baseline (${{ matrix.ad }})
+        uses: zaproxy/action-baseline@v0.14.0
+        with:
+          target: ${{ matrix.hedef }}
+          allow_issue_writing: false
+          fail_action: false
+          artifact_name: zap-${{ matrix.ad }}
+          cmd_options: "-a"
+      - name: Mozilla Observatory notu (${{ matrix.ad }})
+        run: |
+          host=$(echo "${{ matrix.hedef }}" | sed 's#https://##')
+          curl -s -X POST "https://observatory-api.mdn.mozilla.net/api/v2/scan?host=$host" | tee observatory-${{ matrix.ad }}.json
+          echo
+          echo "Not: $(jq -r '.grade' observatory-${{ matrix.ad }}.json)  Puan: $(jq -r '.score' observatory-${{ matrix.ad }}.json)"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: observatory-${{ matrix.ad }}
+          path: observatory-${{ matrix.ad }}.json
