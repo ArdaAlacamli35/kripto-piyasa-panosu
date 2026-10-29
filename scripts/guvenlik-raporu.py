@@ -136,11 +136,11 @@ ul {{ margin: 0 0 6pt 15pt; padding: 0; }} li {{ margin-bottom: 2pt; }}
 <h2>1. Yönetici özeti</h2>
 <div class="ozet">
 <p>Gerçek zamanlı kripto fiyat panosu Cloudflare Pages'e taşındı. Altyapı <code>wrangler.toml</code> ve GitHub Actions ile kod olarak tanımlandı. Kartımdaki öncelikli tehdit, <b>WebSocket'ten gelen kötü niyetli verinin arayüzde script çalıştırması (XSS)</b> ve <b>CSP'nin wss için gevşetilmesi</b>. Bu tehdide karşı dört katmanlı bir savunma kuruldu: gelen her mesaja zod şema doğrulaması, DOM'a yalnızca <code>textContent</code> ile yazma, Trusted Types ve <code>unsafe-inline</code> içermeyen, <code>connect-src</code>'si yalnızca iki tam Binance adresine izin veren sıkı bir CSP.</p>
-<p>Yerel sahte WebSocket sunucusundan gönderilen <b>{len(yukler)} zararlı yükün {len(yukler)}'i de reddedildi</b> ve hiçbir script çalışmadı. İkinci katman testlerinde Trusted Types ve CSP {len(csp_rap)} ihlali engelleyip rapor uç noktasına iletti ({gecen}/{len(satirlar)} kontrol geçti). OWASP ZAP bulguları <b>{c0['Orta']} orta / {c0['Düşük']} düşük</b> riskten <b>{c2.get('Orta',0)} orta / {c2.get('Düşük',0)} düşük</b> riske indi; kalan tek düşük bulgu bilinçli olarak kabul edildi. Mozilla Observatory notu <b>{o0['grade']} ({o0['score']}) → {o2['grade']} ({o2['score']})</b>. Hiçbir anahtar istemcide ya da depoda yok. Maliyet <b>0 TL</b>.</p></div>
+<p>Yerel sahte WebSocket sunucusundan gönderilen <b>{len(yukler)} zararlı yükün {len(yukler)}'i de reddedildi</b> ve hiçbir script çalışmadı. İkinci katman testlerinde Trusted Types ve CSP {len(csp_rap)} ihlali engelleyip rapor uç noktasına iletti ({gecen}/{len(satirlar)} kontrol geçti). OWASP ZAP bulguları <b>{c0['Orta']} orta / {c0['Düşük']} düşük</b> riskten <b>{c2.get('Orta',0)} orta / {c2.get('Düşük',0)} düşük</b> riske indi; kalan tek düşük bulgu bilinçli olarak kabul edildi. Mozilla Observatory notu <b>{o0['grade']} ({o0['score']}) → {o2['grade']} ({o2['score']})</b>, securityheaders.com notu <b>A+</b>. Hiçbir anahtar istemcide ya da depoda yok. Maliyet <b>0 TL</b>.</p></div>
 <div class="kutular">
 <div class="kutu"><b>{len(yukler)}/{len(yukler)}</b><span>zararlı WebSocket yükü engellendi</span></div>
 <div class="kutu"><b>{c0['Orta']} → {c2.get('Orta',0)}</b><span>ZAP orta risk (yüksek: hiç yok)</span></div>
-<div class="kutu"><b>{o2['grade']}</b><span>Observatory ({o2['tests_passed']}/{o2['tests_quantity']} test)</span></div>
+<div class="kutu"><b>{o2['grade']} · A+</b><span>Observatory ({o2['tests_passed']}/{o2['tests_quantity']}) · securityheaders</span></div>
 <div class="kutu"><b>0 TL</b><span>maliyet; ödeme yöntemi yok + bütçe alarmı</span></div></div>
 
 <h2>2. Mimari</h2>
@@ -172,7 +172,8 @@ ul {{ margin: 0 0 6pt 15pt; padding: 0; }} li {{ margin-bottom: 2pt; }}
 <li><b>Branch protection:</b> <code>main</code> dalına doğrudan push kapalıdır. Değişiklik PR ile gelir ve CI kontrolünün geçmesi zorunludur.</li>
 <li><b>Kendi kodumuz için kural:</b> CI'daki <code>check:dom</code> adımı <code>innerHTML</code>, <code>insertAdjacentHTML</code>, <code>eval</code>, <code>new Function</code> gibi ifadeler bulursa derlemeyi durdurur.</li>
 </ul>
-<figure>{img(EKRAN / 'github-advanced-security.png', '86%')}<figcaption>Şekil 2. GitHub Advanced Security: Dependabot uyarıları ve güncellemeleri, secret scanning, push protection, özel güvenlik bildirimi açık.</figcaption></figure>
+<div class="iki"><figure>{img(EKRAN / 'github-advanced-security.png')}</figure><figure>{img(EKRAN / 'github-advanced-security-2.png')}</figure></div>
+<p class="alt" style="margin-top:-2pt">Şekil 2. GitHub Advanced Security: özel güvenlik bildirimi, Dependabot uyarıları ve güvenlik güncellemeleri, CodeQL (varsayılan kurulum), Secret Protection ve push protection açık.</p>
 
 <h2>4. Tehdit modeli (STRIDE)</h2>
 <p>Veri akış diyagramı (Şekil 1) üzerinde 11 tehdit incelendi. Risk = olasılık × etki (1–5). Tam tablo: <code>docs/tehdit-modeli.md</code>. Kartımdaki tehditler (T1, T2) vurgulanmıştır.</p>
@@ -203,8 +204,8 @@ ul {{ margin: 0 0 6pt 15pt; padding: 0; }} li {{ margin-bottom: 2pt; }}
 </tbody></table>
 <p>"Bilgi" düzeyindeki bulgular (Base64 Disclosure, Sec-Fetch-* başlıkları, önbellek yönergeleri) sırasıyla şunlardır: Derlenmiş JS içindeki rastgele dizgeler, istemcinin göndermesi gereken başlıklar ve CDN önbellek davranışı. Güvenlik açığı değillerdir.</p>
 <div class="iki">
-<figure>{img(EKRAN / 'observatory.png')}<figcaption>Şekil 5. Mozilla Observatory sonucu.</figcaption></figure>
-<figure>{img(EKRAN / 'securityheaders.png')}<figcaption>Şekil 6. securityheaders.com sonucu.</figcaption></figure>
+<figure>{img(EKRAN / 'observatory.png')}<figcaption>Şekil 5. Mozilla Observatory: A+ (155/100), 12/12 test.</figcaption></figure>
+<figure>{img(EKRAN / 'securityheaders.png')}<figcaption>Şekil 6. securityheaders.com: A+, altı başlığın tamamı mevcut.</figcaption></figure>
 </div>
 
 <h2>6. İzleme ve olay müdahalesi</h2>
