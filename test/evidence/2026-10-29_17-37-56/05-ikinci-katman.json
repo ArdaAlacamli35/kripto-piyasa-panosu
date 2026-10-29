@@ -1,0 +1,14 @@
+{
+  "ihlaller": [
+    "require-trusted-types-for → trusted-types-sink",
+    "require-trusted-types-for → trusted-types-sink",
+    "connect-src → wss://kotu-sunucu.example.com/stream",
+    "connect-src → https://kotu-sunucu.example.com/sizdir?d=",
+    "trusted-types → trusted-types-policy"
+  ],
+  "innerHTML": "TypeError: Failed to set the 'innerHTML' property on 'Element': This document requires 'TrustedHTML' assignment.",
+  "inlineScript": "TypeError: Failed to set the 'textContent' property on 'HTMLScriptElement': This document requires 'TrustedScript' assignment.",
+  "evilWs": "engellendi (bağlantı kurulamadı)",
+  "exfil": "TypeError: Failed to fetch",
+  "newPolicy": "TypeError: Failed to execute 'createPolicy' on 'TrustedTypePolicyFactory': Policy \"kotu\" disallowed."
+}
