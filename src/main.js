@@ -123,8 +123,12 @@ function renderBar() {
   const up = rows.filter((r) => r.changePct > 0).length;
   const best = rows.reduce((a, b) => (b.changePct > a.changePct ? b : a));
   const worst = rows.reduce((a, b) => (b.changePct < a.changePct ? b : a));
-  setText($('#bar-summary'),
-    `Son 24 saatte 5 varlığın ${up} tanesi yükseldi; en iyi ${SHORT(best.symbol)} (${fmtPct(best.changePct)}), en zayıf ${SHORT(worst.symbol)} (${fmtPct(worst.changePct)}).`);
+  const n = rows.length;
+  let ozet;
+  if (up === 0) ozet = `Son 24 saatte ${n} varlığın hepsi düştü; en az düşen ${SHORT(best.symbol)} (${fmtPct(best.changePct)}), en çok düşen ${SHORT(worst.symbol)} (${fmtPct(worst.changePct)}).`;
+  else if (up === n) ozet = `Son 24 saatte ${n} varlığın hepsi yükseldi; en çok yükselen ${SHORT(best.symbol)} (${fmtPct(best.changePct)}), en az yükselen ${SHORT(worst.symbol)} (${fmtPct(worst.changePct)}).`;
+  else ozet = `Son 24 saatte ${n} varlığın ${up} tanesi yükseldi; en iyi ${SHORT(best.symbol)} (${fmtPct(best.changePct)}), en zayıf ${SHORT(worst.symbol)} (${fmtPct(worst.changePct)}).`;
+  setText($('#bar-summary'), ozet);
   renderSimpleTable($('#bar-table'), '24 saatlik getiri', ['Varlık', '24 sa değişim', 'Yön'],
     [...rows].sort((a, b) => b.changePct - a.changePct).map((r) => [SHORT(r.symbol), fmtPct(r.changePct), direction(r.changePct).word]));
 }
