@@ -1,0 +1,30 @@
+name: Maliyet / kullanım bekçisi
+
+# Cloudflare ücretsiz katmanında Pages Functions için günlük 100.000 istek sınırı vardır.
+# Hesapta ödeme yöntemi tanımlı olmadığından sınır aşılsa da ücret çıkmaz; yine de günlük kullanım
+# %50'yi geçerse bu iş başarısız olur ve e-posta alarmı gelir.
+on:
+  schedule:
+    - cron: "5 */6 * * *"
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  kontrol:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Son 24 saatteki Workers/Functions isteklerini say
+        env:
+          # Bu token YALNIZCA "Account Analytics: Read" iznine sahiptir (yayın token'ından ayrı).
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_ANALYTICS_TOKEN }}
+          CF_ACCOUNT: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          ESIK: "50000"
+        run: |
+          since=$(date -u -d '24 hours ago' +%Y-%m-%dT%H:%M:%SZ)
+          until=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+          q=$(jq -n --arg a "$CF_ACCOUNT" --arg s "$since" --arg u "$until" '{query:"query($a:String!,$s:Time!,$u:Time!){viewer{accounts(filter:{accountTag:$a}){workersInvocationsAdaptive(limit:1000,filter:{datetime_geq:$s,datetime_leq:$u}){sum{requests}}}}}",variables:{a:$a,s:$s,u:$u}}')
+          r=$(curl -s https://api.cloudflare.com/client/v4/graphql -H "Authorization: Bearer $CF_TOKEN" -H "Content-Type: application/json" -d "$q")
+          n=$(echo "$r" | jq '[.data.viewer.accounts[0].workersInvocationsAdaptive[].sum.requests] | add // 0')
+          echo "Son 24 saat: $n istek (eşik: $ESIK, ücretsiz sınır: 100000)"
+          test "$n" -lt "$ESIK" || { echo "::error::Kullanım eşiği aşıldı: $n"; exit 1; }

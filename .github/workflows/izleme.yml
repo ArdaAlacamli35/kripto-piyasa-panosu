@@ -1,0 +1,32 @@
+name: İzleme (erişilebilirlik + güvenlik başlıkları)
+
+# Saatte bir canlı siteyi yoklar. Site kapalıysa veya güvenlik başlıklarından biri kaybolmuşsa
+# iş başarısız olur ve GitHub depo sahibine e-posta ile ALARM gönderir.
+on:
+  schedule:
+    - cron: "41 * * * *"
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  yokla:
+    runs-on: ubuntu-latest
+    env:
+      SITE: https://kripto-piyasa-panosu.pages.dev
+    steps:
+      - name: Ana sayfa 200 dönüyor mu?
+        run: |
+          code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 20 "$SITE/")
+          echo "HTTP $code"
+          test "$code" = "200"
+      - name: Güvenlik başlıkları yerinde mi?
+        run: |
+          h=$(curl -sI --max-time 20 "$SITE/")
+          echo "$h"
+          for want in "content-security-policy" "strict-transport-security" "x-content-type-options" "referrer-policy" "permissions-policy"; do
+            echo "$h" | grep -qi "^$want:" || { echo "::error::Eksik başlık: $want"; exit 1; }
+          done
+          echo "$h" | grep -i "^content-security-policy:" | grep -q "unsafe-inline" && { echo "::error::CSP gevşetilmiş (unsafe-inline)"; exit 1; } || true
+      - name: security.txt yayında mı?
+        run: curl -sf --max-time 20 "$SITE/.well-known/security.txt" | grep -q "^Contact:"
