@@ -1,0 +1,9 @@
+node_modules/
+dist/
+dist-test/
+.wrangler/
+.dev.vars
+test/evidence/*.webm
+*.log
+.env
+.env.*
